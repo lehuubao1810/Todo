@@ -82,7 +82,7 @@ function Home() {
 
     return (
         <>
-            <Nav />
+            <Nav/>
             <div className="container">
                 <div className="tasks">
                     {tasks.map((task, index) => (
