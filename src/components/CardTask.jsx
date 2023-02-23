@@ -11,7 +11,7 @@ function CardTask(props) {
     }
     const handleOverlay = () => {
         setStatusModal(false)
-      }
+    }
 
     return (
         <>
@@ -21,10 +21,18 @@ function CardTask(props) {
             </div>
             {
                 statusModal &&
-                <div onClick={e => handleOverlay(e)} className="overlay">
-                  <ModalTask task={props.task} />
+                <div
+                    onClick={handleOverlay}
+                    className="overlay"
+                >
+                    <ModalTask
+                        task={props.task}
+                        index={props.index}
+                        handleDeleteTask={props.handleDeleteTask}
+                        handleOverlay={handleOverlay}
+                    />
                 </div>
-              }
+            }
         </>
 
 

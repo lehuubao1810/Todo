@@ -159,15 +159,19 @@
   font-weight: bold;
   margin-bottom: 3rem;
 }
-.modalTask .header .more i {
+.modalTask .header .more {
+  position: relative;
+}
+.modalTask .header .more .btnMore {
   font-size: 1.25rem;
   font-weight: bold;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
   color: #a1a1a1;
+  
 }
-.modalTask .header .more i:hover {
+.modalTask .header .more .btnMore:hover {
   background: var(--color-board);
   color: var(--color-title);
 }
@@ -198,6 +202,37 @@
 .status:focus {
   outline: none;
 }
+/* More */
+.moreOptions {
+  position: absolute;
+  top: 60%;
+  transform: translateX(-50%);
+  width: 150px;
+  background: var(--color-main);
+  border-radius: 10px;
+  padding: 10px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding-left: 10px;
+}
+.moreOptions .option {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #a1a1a1;
+}
+.moreOptions .option i {
+  margin-right: 10px;
+}
+.moreOptions .delete {
+  color:#ea5555;
+}
+.moreOptions .option:hover {
+  color: var(--color-title);
+}
+.moreOptions .delete:hover {
+  color:#fc7777;
+}
 
 /* btnAddTask */
 .btnAddTask {
@@ -216,4 +251,123 @@
   align-items: center;
   cursor: pointer;
   z-index: 999;
+}
+
+/* Modal Edit Task */
+.modalForm {
+  width: 31.25rem;
+  padding: 20px;
+  background: var(--color-main);
+  border-radius: 10px;
+  color: var(--color-title);
+}
+.modalForm .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.modalForm .form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.modalForm .form .formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modalForm .form .formGroup label {
+  font-size: 1rem;
+  color: #a1a1a1;
+}
+.modalForm .form .formGroup input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: var(--color-board);
+  color: var(--color-title);
+}
+.modalForm .form .formGroup input:focus {
+  outline: none;
+}
+.modalForm .form .formGroup textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: var(--color-board);
+  color: var(--color-title);
+  resize: none;
+}
+.modalForm .form .formGroup textarea:focus {
+  outline: none;
+}
+.modalForm .form .formGroup select {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: var(--color-board);
+  color: var(--color-title);
+
+  /* arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.modalForm .form .formGroup .btn {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: var(--color-addButton);
+  color: var(--color-title);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.modalForm .form .formGroup .btn:hover {
+  background: var(--color-board);
+  color: var(--color-title);
+}
+
+/* Modal Delete */
+.modalDelete {
+  width: 31.25rem;
+  padding: 35px;
+  background: var(--color-main);
+  border-radius: 10px;
+  color: var(--color-title);
+}
+.modalDelete .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ea5555;
+}
+.modalDelete .remind {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #a1a1a1;
+}
+.modalDelete .btnGroup {
+  display: flex;
+  justify-content: space-between;
+}
+.modalDelete .btnGroup .btn {
+  width: 48%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.modalDelete .btnGroup .btnCancel {
+  background:var(--color-title) ;
+  color:var(--color-addButton) ;
+}
+.modalDelete .btnGroup .btnDelete {
+  background: #ea5555;
+  color: var(--color-title);
+}
+.modalDelete .btnGroup .btn:hover {
+  opacity: 0.8;
 }
