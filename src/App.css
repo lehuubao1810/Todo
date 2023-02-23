@@ -18,6 +18,7 @@
   --color-addButton: #635FC7;
   --color-ellipsis: #20212C;
   --color-checked: rgba(255, 255, 255, .5);
+  --color-text-theme: #ffffff;
 }
 .light {
   --color-bg: #F4F7FD;
@@ -28,9 +29,10 @@
   --color-subTitle: #828fa3;
   --color-board: #ffffff;
   --color-themeSwitchBox: #F4F7FD;
-  --color-addButton: #f0effa;
+  --color-addButton: #635FC7;
   --color-ellipsis: #E4EBFA;
   --color-checked: rgba(0, 0, 0, .5);
+  --color-text-theme: #ffffff;
 }
 .App {
   position: relative;
@@ -54,13 +56,13 @@
   border-radius: 10px;
   cursor: pointer;
   background: var(--color-addButton);
-  color: var(--color-title);
+  color: var(--color-text-theme);
   font-size: 16px;
   margin-right: 20px;
   font-weight: bold;
 }
 .btnTheme:hover {
-  background: var(--color-board);
+  opacity: .8;
 }
 .btnTheme i {
   margin-right: 8px;
@@ -186,10 +188,10 @@
 }
 .status {
   width: 100%;
-  padding: 15px 20px;
+  padding: 10px 20px;
   border-radius: 5px;
-  border: none;
-  background: var(--color-board);
+  border: 2px solid #a1a1a1;
+  background: var(--color-main);
   color: var(--color-title);
   cursor: pointer;
 
@@ -201,6 +203,7 @@
 }
 .status:focus {
   outline: none;
+  border: 2px solid var(--color-addButton);
 }
 /* More */
 .moreOptions {
@@ -228,10 +231,7 @@
   color:#ea5555;
 }
 .moreOptions .option:hover {
-  color: var(--color-title);
-}
-.moreOptions .delete:hover {
-  color:#fc7777;
+  opacity: .8;
 }
 
 /* btnAddTask */
@@ -244,7 +244,7 @@
   border-radius: 50%;
   border: none;
   background: var(--color-addButton);
-  color: var(--color-title);
+  color: var(--color-text-theme);
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
@@ -282,36 +282,42 @@
 }
 .modalForm .form .formGroup input {
   padding: 10px;
-  border: none;
   border-radius: 5px;
-  background: var(--color-board);
+  border: 2px solid #a1a1a1;
+  background: var(--color-main);
   color: var(--color-title);
 }
 .modalForm .form .formGroup input:focus {
   outline: none;
+  border: 2px solid var(--color-addButton);
 }
 .modalForm .form .formGroup textarea {
   padding: 10px;
-  border: none;
   border-radius: 5px;
-  background: var(--color-board);
+  border: 2px solid #a1a1a1;
+  background: var(--color-main);
   color: var(--color-title);
   resize: none;
 }
 .modalForm .form .formGroup textarea:focus {
   outline: none;
+  border: 2px solid var(--color-addButton);
 }
 .modalForm .form .formGroup select {
   padding: 10px;
-  border: none;
   border-radius: 5px;
-  background: var(--color-board);
+  border: 2px solid #a1a1a1;
+  background: var(--color-main);
   color: var(--color-title);
 
   /* arrow */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+.modalForm .form .formGroup select:focus {
+  outline: none;
+  border: 2px solid var(--color-addButton);
 }
 .modalForm .form .formGroup .btn {
   padding: 10px;
@@ -324,8 +330,7 @@
   font-weight: bold;
 }
 .modalForm .form .formGroup .btn:hover {
-  background: var(--color-board);
-  color: var(--color-title);
+  opacity: .8;
 }
 
 /* Modal Delete */
@@ -361,12 +366,12 @@
   font-weight: bold;
 }
 .modalDelete .btnGroup .btnCancel {
-  background:var(--color-title) ;
+  background: #dee1e7 ;
   color:var(--color-addButton) ;
 }
 .modalDelete .btnGroup .btnDelete {
   background: #ea5555;
-  color: var(--color-title);
+  color: var(--color-text-theme);
 }
 .modalDelete .btnGroup .btn:hover {
   opacity: 0.8;
