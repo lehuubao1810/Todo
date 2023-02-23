@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+.dark {
+  --color-bg: #20212C;
+  --color-scroll: #3E3F4E;
+  --color-borderLine: #3E3F4E;
+  --color-main: #2B2C37;
+  --color-title: #ffffff;
+  --color-subTitle: #ffffff;
+  --color-board: #20212C;
+  --color-themeSwitchBox: #20212C;
+  --color-addButton: #635FC7;
+  --color-ellipsis: #20212C;
+  --color-checked: rgba(255, 255, 255, .5);
+}
+.light {
+  --color-bg: #F4F7FD;
+  --color-scroll: #828fa3;
+  --color-borderLine: #E4EBFA;
+  --color-main: #ffffff;
+  --color-title: #000000;
+  --color-subTitle: #828fa3;
+  --color-board: #ffffff;
+  --color-themeSwitchBox: #F4F7FD;
+  --color-addButton: #f0effa;
+  --color-ellipsis: #E4EBFA;
+  --color-checked: rgba(0, 0, 0, .5);
+}
+.App {
+  position: relative;
+}
+/* Nav */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  background: var(--color-main);
+  color: var(--color-title);
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.btnTheme {
+  padding: 10px 20px;
+  border: none ;
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--color-addButton);
+  color: var(--color-title);
+  font-size: 16px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+.btnTheme:hover {
+  background: var(--color-board);
+}
+.btnTheme i {
+  margin-right: 8px;
+}
+.avt i {
+  font-size: 1.5rem;
+  color: var(--color-title);
+  cursor: pointer;
+}
+.nav .group {
+  display: flex;
+  align-items: center;
+}
+
+/* Card Task */
+.container {
+  width: 100%;
+  padding: 40px 20px;
+  background: var(--color-bg);
+  height: 100vh;
+}
+.tasks {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.red {
+  border: 2px solid #c36e6e;
+}
+.green {
+  border: 2px solid #6ec36e; 
+}
+.cardTask {
+  width: 300px;
+  display: inline-block;
+  padding: 20px;
+  color: var(--color-title);
+  background: var(--color-main);
+  border-radius: 10px;
+  cursor: grab;
+  /*  */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+.cardTask:active {
+  cursor: grabbing;
+}
+
+.cardTask:hover {
+  opacity: .8;
+}
+.cardTask .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.cardTask .description {
+  color: #a1a1a1
+}
+
+/* modalTask */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalTask {
+  width: 31.25rem;
+  padding: 20px;
+  background: var(--color-main);
+  border-radius: 10px;
+  color: var(--color-title);
+}
+.modalTask .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.modalTask .header .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+.modalTask .header .more i {
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #a1a1a1;
+}
+.modalTask .header .more i:hover {
+  background: var(--color-board);
+  color: var(--color-title);
+}
+
+.modalTask .description {
+  font-size: 1rem;
+  margin-bottom: 3rem;
+  color: #a1a1a1;
+}
+.modalTask h4 {
+  margin-bottom: 10px;
+}
+.status {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: none;
+  background: var(--color-board);
+  color: var(--color-title);
+  cursor: pointer;
+
+  /* arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+}
+.status:focus {
+  outline: none;
+}
+
+/* btnAddTask */
+.btnAddTask {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-addButton);
+  color: var(--color-title);
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 999;
+}
