@@ -38,6 +38,7 @@ function ModalEdit(props) {
     props.task.title = state.title
     props.task.description = state.description
     props.task.status = state.status
+    props.saveLocalStorage(props.tasks)
     props.handleOverlay()
   }
 

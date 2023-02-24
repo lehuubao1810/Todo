@@ -26,10 +26,12 @@ function CardTask(props) {
                     className="overlay"
                 >
                     <ModalTask
+                        tasks={props.tasks}
                         task={props.task}
                         index={props.index}
                         handleDeleteTask={props.handleDeleteTask}
                         handleOverlay={handleOverlay}
+                        saveLocalStorage={props.saveLocalStorage}
                     />
                 </div>
             }
