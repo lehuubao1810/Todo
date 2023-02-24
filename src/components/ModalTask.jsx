@@ -27,6 +27,7 @@ function ModalTask(props) {
     const handleStatusTask = (e) => {
         setStatusTask(e.target.value)
         props.task.status = e.target.value
+        props.saveLocalStorage(props.tasks)
     }
     const handleEdit = () => {
         setStatusMore(false)
@@ -82,8 +83,10 @@ function ModalTask(props) {
             {
                 statusModalEdit &&
                 <ModalEdit
+                    tasks={props.tasks}
                     task={props.task}
                     handleOverlay={props.handleOverlay}
+                    saveLocalStorage={props.saveLocalStorage}
                 />
             }
             {
