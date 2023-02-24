@@ -413,3 +413,19 @@
 .bounce-loading > div:last-child {
   animation-delay: 0.45s;
 }
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  background: var(--color-main);
+  color: #a1a1a1;
+  font-size: 0.75rem;
+  text-align: center;
+}
+.footer a {
+  color: var(--color-addButton);
+  text-decoration: none;
+}

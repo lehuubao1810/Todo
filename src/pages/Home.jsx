@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
-import Nav from '../components/Nav'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 import CardTask from '../components/CardTask'
 import ModalAdd from '../components/ModalAdd'
 
@@ -88,7 +89,7 @@ function Home() {
 
     return (
         <>
-            <Nav />
+            <Header />
             <div className="container">
                 {
                     loading
@@ -134,6 +135,7 @@ function Home() {
                     />
                 </div>
             }
+            <Footer />
         </>
     )
 }
