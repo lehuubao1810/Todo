@@ -92,7 +92,7 @@
   justify-content: center;
 }
 .red {
-  border: 2px solid #c36e6e;
+  border: 2px solid #ea5555;
 }
 .green {
   border: 2px solid #6ec36e; 
@@ -428,4 +428,10 @@
 .footer a {
   color: var(--color-addButton);
   text-decoration: none;
+}
+
+
+/* Input */
+.isEmpty {
+  border: 2px solid #ea5555!important;
 }
