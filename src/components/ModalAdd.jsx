@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { useReducer } from 'react'
+import React from 'react'
+import { useReducer, useRef } from 'react'
 
 const initialState = {
   title: '',
@@ -27,7 +27,31 @@ function ModalAdd(props) {
   const handleChange = (e) => {
     dispatch({ type: e.target.name, payload: e.target.value })
   }
+  const titleRef = useRef(null)
+  const descriptionRef = useRef(null)
 
+  const handleBtnAdd = () => {
+    if (state.title === '' && state.description === '') {
+      titleRef.current.classList.add('isEmpty')
+      descriptionRef.current.classList.add('isEmpty')
+    }
+    else if (state.title === '') {
+      titleRef.current.classList.add('isEmpty')
+    }
+    else if (state.description === '') {
+      descriptionRef.current.classList.add('isEmpty')
+    } else {
+      handleAddTask()
+    }
+  }
+
+  const handleFocus = (e) => {
+    e.target.classList.contains('isEmpty')
+      ?
+      e.target.classList.remove('isEmpty')
+      :
+      null
+  }
   const handleAddTask = () => {
     props.handleAddTask(state)
     props.handleOverlay()
@@ -44,19 +68,23 @@ function ModalAdd(props) {
         <div className="formGroup">
           <label htmlFor="title">Title</label>
           <input
+            ref={titleRef}
             type="text"
             name="title"
             id="title"
             value={state.title}
             onChange={handleChange}
+            onFocus={handleFocus}
           />
           <label htmlFor="description">Description</label>
           <textarea
+            ref={descriptionRef}
             name="description"
             id="description"
             cols="30" rows="10"
             value={state.description}
             onChange={handleChange}
+            onFocus={handleFocus}
           ></textarea>
           <label htmlFor="status">Status</label>
           <select
@@ -70,7 +98,7 @@ function ModalAdd(props) {
           </select>
           <button
             className="btnAdd btn"
-            onClick={handleAddTask}
+            onClick={handleBtnAdd}
           >
             Add Task
           </button>
