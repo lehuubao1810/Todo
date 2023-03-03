@@ -1,8 +1,8 @@
 import React from 'react'
 import { useContext } from 'react'
-import {ThemeContext} from './ThemeContext'
+import {ThemeContext} from '../contexts/ThemeContext'
 
-function Nav() {
+function Nav(props) {
   const { theme, handleTheme } = useContext(ThemeContext)
 
   return (
@@ -22,7 +22,7 @@ function Nav() {
             </button>
         }
 
-        <div className="avt">
+        <div className="avt" onClick={props.handleLogout}>
           <i className="fas fa-user-circle"></i>
         </div>
       </div>

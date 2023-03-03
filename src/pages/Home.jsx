@@ -1,11 +1,25 @@
 import React from 'react'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
+import { useAuth } from '../contexts/AuthContext';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import CardTask from '../components/CardTask'
 import ModalAdd from '../components/ModalAdd'
+import { ThemeContext } from '../contexts/ThemeContext'
 
 function Home() {
+    const { theme } = useContext(ThemeContext)
+    const { logout, currentUser } = useAuth();
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate('/login');
+        } catch {
+            console.log('Failed to log out');
+        }
+    }
+
     const [statusModalAdd, setStatusModalAdd] = useState(false)
     const [loading, setLoading] = useState(true)
 
@@ -19,53 +33,6 @@ function Home() {
         setLoading(false)
     }, [])
 
-    // const tasks = [
-    //     {
-    //         title: 'Learn React',
-    //         description: 'Learn React from the official documentation',
-    //         status: 'Completed',
-    //     },
-    //     {
-    //         title: 'Learn JavaScript',
-    //         description: 'Learn JavaScript from the official documentation',
-    //         status: 'Incomplete',
-    //     },
-    //     {
-    //         title: 'Learn CSS',
-    //         description: 'Learn CSS from the official documentation',
-    //         status: 'Incomplete',
-    //     },
-    //     {
-    //         title: 'Learn HTML',
-    //         description: 'Learn HTML from the official documentation',
-    //         status: 'Incomplete',
-    //     }
-    // ]
-
-    // useEffect(() => {
-    //     setTasks([
-    //         {
-    //             title: 'Learn React',
-    //             description: 'Learn React from the official documentation',
-    //             status: 'Completed',
-    //         },
-    //         {
-    //             title: 'Learn JavaScript',
-    //             description: 'Learn JavaScript from the official documentation',
-    //             status: 'Incomplete',
-    //         },
-    //         {
-    //             title: 'Learn CSS',
-    //             description: 'Learn CSS from the official documentation',
-    //             status: 'Incomplete',
-    //         },
-    //         {
-    //             title: 'Learn HTML',
-    //             description: 'Learn HTML from the official documentation',
-    //             status: 'Incomplete',
-    //         }
-    //     ])
-    // }, [])
     const saveLocalStorage = (items) => {
         localStorage.setItem('tasks', JSON.stringify(items))
     }
@@ -88,8 +55,8 @@ function Home() {
     }
 
     return (
-        <>
-            <Header />
+        <div className={`${theme}`}>
+            <Header handleLogout={handleLogout} />
             <div className="container">
                 {
                     loading
@@ -136,7 +103,7 @@ function Home() {
                 </div>
             }
             <Footer />
-        </>
+        </div>
     )
 }
 
