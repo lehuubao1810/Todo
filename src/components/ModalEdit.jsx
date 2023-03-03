@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useReducer } from 'react'
+import { useReducer, useRef } from 'react'
 
 const initialState = {
   title: '',
@@ -34,6 +34,32 @@ function ModalEdit(props) {
     dispatch({ type: e.target.name, payload: e.target.value })
   }
 
+  const titleRef = useRef(null)
+  const descriptionRef = useRef(null)
+
+  const handleBtnSave = () => {
+    if (state.title === '' && state.description === '') {
+      titleRef.current.classList.add('isEmpty')
+      descriptionRef.current.classList.add('isEmpty')
+    }
+    else if (state.title === '') {
+      titleRef.current.classList.add('isEmpty')
+    }
+    else if (state.description === '') {
+      descriptionRef.current.classList.add('isEmpty')
+    } else {
+      handleSaveChanges()
+    }
+  }
+
+  const handleFocus = (e) => {
+    e.target.classList.contains('isEmpty')
+      ?
+      e.target.classList.remove('isEmpty')
+      :
+      null
+  }
+
   const handleSaveChanges = () => {
     props.task.title = state.title
     props.task.description = state.description
@@ -53,19 +79,23 @@ function ModalEdit(props) {
         <div className="formGroup">
           <label htmlFor="title">Title</label>
           <input
+            ref={titleRef}
             type="text"
             name="title"
             id="title"
             value={state.title}
             onChange={handleChange}
+            onFocus={e => handleFocus(e)}
           />
           <label htmlFor="description">Description</label>
           <textarea
+            ref={descriptionRef}
             name="description"
             id="description"
             cols="30" rows="10"
             value={state.description}
             onChange={handleChange}
+            onFocus={e => handleFocus(e)}
           ></textarea>
           <label htmlFor="status">Status</label>
           <select
@@ -79,7 +109,7 @@ function ModalEdit(props) {
           </select>
           <button
             className="btnSaveChanges btn"
-            onClick={handleSaveChanges}
+            onClick={handleBtnSave}
           >
             Save Changes
           </button>
