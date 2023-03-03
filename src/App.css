@@ -130,6 +130,9 @@
   color: #a1a1a1;
   word-break: break-word;
 }
+.cardTask .description pre {
+  white-space: pre-wrap;
+}
 
 /* modalTask */
 .overlay {
@@ -184,6 +187,9 @@
   margin-bottom: 3rem;
   color: #a1a1a1;
   word-break: break-word;
+}
+.modalTask .description pre {
+  white-space: pre-wrap;
 }
 .modalTask h4 {
   margin-bottom: 10px;

@@ -45,5 +45,4 @@ export function AuthProvider({ children }) {
       {!loading ? children : <p>Loading...</p>}
     </AuthContext.Provider>
   )
-
 }

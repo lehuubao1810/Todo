@@ -17,7 +17,9 @@ function CardTask(props) {
         <>
             <div className={`${borderColor} cardTask `} onClick={handleModal}>
                 <div className="title">{props.task.title}</div>
-                <div className="description">{props.task.description}</div>
+                <div className="description">
+                    <pre>{props.task.description}</pre>
+                </div>
             </div>
             {
                 statusModal &&

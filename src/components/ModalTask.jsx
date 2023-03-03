@@ -68,7 +68,9 @@ function ModalTask(props) {
                         </div>
 
                     </div>
-                    <div className="description">{props.task.description}</div>
+                    <div className="description">
+                        <pre>{props.task.description}</pre>
+                    </div>
                     <h4>Current status</h4>
                     <select
                         className="status"
