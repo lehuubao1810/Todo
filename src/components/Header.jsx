@@ -1,9 +1,14 @@
 import React from 'react'
+import { useState } from 'react'
 import { useContext } from 'react'
-import {ThemeContext} from '../contexts/ThemeContext'
+import { ThemeContext } from '../contexts/ThemeContext'
 
 function Nav(props) {
   const { theme, handleTheme } = useContext(ThemeContext)
+  const [modalUser, setModalUser] = useState(false)
+  const handleUser = () => {
+    setModalUser(!modalUser)
+  }
 
   return (
     <div className="nav">
@@ -22,8 +27,24 @@ function Nav(props) {
             </button>
         }
 
-        <div className="avt" onClick={props.handleLogout}>
+        <div className="avt" onClick={handleUser}>
           <i className="fas fa-user-circle"></i>
+          {
+            modalUser &&
+            <div className="modalUser" >
+              <div className="option" >
+                <i className="fa-solid fa-edit"></i>
+                <span>Edit profile</span>
+              </div>
+              <div
+                className="option logout"
+                onClick={props.handleLogout}
+              >
+                <i className="fa-solid fa-sign-out"></i>
+                <span>Logout</span>
+              </div>
+            </div>
+          }
         </div>
       </div>
     </div>

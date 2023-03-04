@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useReducer, useRef } from 'react'
+import { useData } from '../contexts/DataContext'
 
 const initialState = {
   title: '',
@@ -21,6 +22,8 @@ const reducer = (state, action) => {
 }
 
 function ModalEdit(props) {
+
+  const { tasks, updateFirebase} = useData()
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -64,7 +67,7 @@ function ModalEdit(props) {
     props.task.title = state.title
     props.task.description = state.description
     props.task.status = state.status
-    props.saveLocalStorage(props.tasks)
+    updateFirebase(tasks)
     props.handleOverlay()
   }
 

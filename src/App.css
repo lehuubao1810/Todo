@@ -45,6 +45,7 @@
   padding: 20px 20px;
   background: var(--color-main);
   color: var(--color-title);
+  position: relative;
 }
 .logo {
   font-size: 1.5rem;
@@ -76,6 +77,39 @@
   display: flex;
   align-items: center;
 }
+/* modal user */
+
+.modalUser {
+  position: absolute;
+  top: 110%;
+  right: 20px; 
+  width: 150px;
+  background: var(--color-main);
+  border-radius: 10px;
+  padding: 10px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding-left: 10px;
+  z-index: 999;
+}
+.modalUser .option {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  cursor: pointer;
+  color: #a1a1a1;
+}
+.modalUser .option i {
+  margin-right: 10px;
+  font-size: 1rem;
+  color: #a1a1a1;
+}
+.modalUser .delete {
+  color:#ea5555;
+}
+.modalUser .option:hover {
+  opacity: .8;
+}
+
 
 /* Card Task */
 .container {

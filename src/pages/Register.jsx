@@ -1,4 +1,6 @@
 // export default Register;
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 import '../assets/css/register.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +22,15 @@ function Register() {
         try {
             setError('');
             setLoading(true);
-            await signup(email, password);
+            const res = await signup(email, password);
+
+            await setDoc(doc(db, "users", res.user.uid), {
+                uid: res.user.uid,
+                    email,
+            }) 
+            await setDoc(doc(db, "tasks", res.user.uid), {
+                tasks: [],
+            }) 
             navigate('/');
         } catch (err) {
             setError('Failed to create an account');

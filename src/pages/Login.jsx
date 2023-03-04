@@ -2,6 +2,8 @@ import '../assets/css/login.css'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -14,6 +16,7 @@ function Login() {
 
     try {
       await login(email, password);
+      Navigate('/')
     } catch (error) {
       setError('Failed to log in');
     }
