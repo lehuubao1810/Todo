@@ -10,14 +10,16 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     try {
       await login(email, password);
-      Navigate('/')
+      navigate('/');
     } catch (error) {
+      console.log(error);
       setError('Failed to log in');
     }
   };

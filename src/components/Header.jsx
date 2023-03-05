@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useContext } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 
-function Nav(props) {
+function Header(props) {
   const { theme, handleTheme } = useContext(ThemeContext)
   const [modalUser, setModalUser] = useState(false)
   const handleUser = () => {
@@ -51,4 +51,4 @@ function Nav(props) {
   )
 }
 
-export default Nav
+export default Header
