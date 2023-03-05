@@ -2,10 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import ModalEdit from './ModalEdit'
 import ModalDelete from './ModalDelete'
-import { useData } from '../contexts/DataContext'
 
 function ModalTask(props) {
-    const { tasks, updateFirebase} = useData()
 
     const [statusModalTask, setStatusModalTask] = useState(true)
     const [statusTask, setStatusTask] = useState(props.task.status)
@@ -29,7 +27,7 @@ function ModalTask(props) {
     const handleStatusTask = (e) => {
         setStatusTask(e.target.value)
         props.task.status = e.target.value
-        updateFirebase(tasks) 
+        props.updateFirebase(props.tasks) 
     }
     const handleEdit = () => {
         setStatusMore(false)
@@ -87,16 +85,20 @@ function ModalTask(props) {
             {
                 statusModalEdit &&
                 <ModalEdit
+                    tasks={props.tasks}
                     task={props.task}
                     handleOverlay={props.handleOverlay}
+                    updateFirebase={props.updateFirebase}
                 />
             }
             {
                 statusModalDelete &&
                 <ModalDelete
+                    
                     task={props.task}
                     index={props.index}
                     handleOverlay={props.handleOverlay}
+                    handleDeleteTask={props.handleDeleteTask}
                 />
             }
         </>

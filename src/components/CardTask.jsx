@@ -28,8 +28,11 @@ function CardTask(props) {
                     className="overlay"
                 >
                     <ModalTask
+                        tasks={props.tasks}
                         task={props.task}
                         index={props.index}
+                        updateFirebase={props.updateFirebase}
+                        hand
                         handleOverlay={handleOverlay}
                     />
                 </div>

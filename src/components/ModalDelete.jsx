@@ -1,14 +1,12 @@
 import React from 'react'
-import { useData } from '../contexts/DataContext'
 
 function ModalDelete(props) {
-  const { handleDeleteTask } = useData()
 
   const handleClose = (e) => {
     e.stopPropagation()
   }
   const handleBtnDelete = () => {
-    handleDeleteTask(props.index)
+    props.handleDeleteTask(props.index)
     props.handleOverlay()
   }
   return (
