@@ -32,7 +32,7 @@ function CardTask(props) {
                         task={props.task}
                         index={props.index}
                         updateFirebase={props.updateFirebase}
-                        hand
+                        handleDeleteTask={props.handleDeleteTask}
                         handleOverlay={handleOverlay}
                     />
                 </div>

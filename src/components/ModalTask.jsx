@@ -94,7 +94,6 @@ function ModalTask(props) {
             {
                 statusModalDelete &&
                 <ModalDelete
-                    
                     task={props.task}
                     index={props.index}
                     handleOverlay={props.handleOverlay}
