@@ -1,10 +1,11 @@
 import React from 'react'
 
 function ModalDelete(props) {
+
   const handleClose = (e) => {
     e.stopPropagation()
   }
-  const handleDeleteTask = () => {
+  const handleBtnDelete = () => {
     props.handleDeleteTask(props.index)
     props.handleOverlay()
   }
@@ -18,7 +19,7 @@ function ModalDelete(props) {
         and tasks and cannot be reversed.
       </div>
       <div className="btnGroup">
-        <button className="btnDelete btn" onClick={handleDeleteTask}>Delete</button>
+        <button className="btnDelete btn" onClick={handleBtnDelete}>Delete</button>
         <button className="btnCancel btn" onClick={props.handleOverlay}>Cancel</button>
       </div>
     </div>

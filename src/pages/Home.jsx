@@ -1,83 +1,72 @@
 import React from 'react'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../firebase';
+import { collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import CardTask from '../components/CardTask'
 import ModalAdd from '../components/ModalAdd'
+import { ThemeContext } from '../contexts/ThemeContext'
 
 function Home() {
+    const { theme } = useContext(ThemeContext)
+    const { logout, setCurrentUser, currentUser, loading } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate('/login');
+        } catch(err) {
+            console.log(err);
+            console.log('Failed to log out');
+        }
+    }
+
     const [statusModalAdd, setStatusModalAdd] = useState(false)
-    const [loading, setLoading] = useState(true)
 
     const [tasks, setTasks] = useState([])
 
+    // get data from firebase
     useEffect(() => {
-        const tasks = JSON.parse(localStorage.getItem('tasks'))
-        if (tasks) {
-            setTasks(tasks)
+        const uid = currentUser.uid;
+        const getTasks = async () => {
+            const docRef = doc(db, "tasks", uid);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setTasks(docSnap.data().tasks)
+            } else {
+                console.log("No such document!");
+            }
         }
-        setLoading(false)
-    }, [])
+        {uid && getTasks()}
+    }, [loading]);
 
-    // const tasks = [
-    //     {
-    //         title: 'Learn React',
-    //         description: 'Learn React from the official documentation',
-    //         status: 'Completed',
-    //     },
-    //     {
-    //         title: 'Learn JavaScript',
-    //         description: 'Learn JavaScript from the official documentation',
-    //         status: 'Incomplete',
-    //     },
-    //     {
-    //         title: 'Learn CSS',
-    //         description: 'Learn CSS from the official documentation',
-    //         status: 'Incomplete',
-    //     },
-    //     {
-    //         title: 'Learn HTML',
-    //         description: 'Learn HTML from the official documentation',
-    //         status: 'Incomplete',
-    //     }
-    // ]
-
-    // useEffect(() => {
-    //     setTasks([
-    //         {
-    //             title: 'Learn React',
-    //             description: 'Learn React from the official documentation',
-    //             status: 'Completed',
-    //         },
-    //         {
-    //             title: 'Learn JavaScript',
-    //             description: 'Learn JavaScript from the official documentation',
-    //             status: 'Incomplete',
-    //         },
-    //         {
-    //             title: 'Learn CSS',
-    //             description: 'Learn CSS from the official documentation',
-    //             status: 'Incomplete',
-    //         },
-    //         {
-    //             title: 'Learn HTML',
-    //             description: 'Learn HTML from the official documentation',
-    //             status: 'Incomplete',
-    //         }
-    //     ])
-    // }, [])
-    const saveLocalStorage = (items) => {
-        localStorage.setItem('tasks', JSON.stringify(items))
+    const updateFirebase = async (tasks) => {
+        const uid = currentUser.uid;
+        const docRef = doc(db, "tasks", uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            await updateDoc(docRef, {
+                tasks: tasks
+            });
+        } else {
+            console.log("No such document!");
+        }
     }
 
     const handleAddTask = (task) => {
         setTasks([...tasks, task])
-        saveLocalStorage([...tasks, task])
+        updateFirebase([...tasks, task])
     }
+
     const handleDeleteTask = (index) => {
         const newTasks = tasks.filter((task, i) => i !== index)
         setTasks(newTasks)
-        saveLocalStorage(newTasks)
+        updateFirebase(newTasks)
     }
 
     const handleModalAdd = () => {
@@ -88,13 +77,13 @@ function Home() {
     }
 
     return (
-        <>
-            <Header />
+        <div className={`${theme}`}>
+            <Header handleLogout={handleLogout} />
             <div className="container">
                 {
                     loading
                         ?
-                        <div class="bounce-loading">
+                        <div className="bounce-loading">
                             <div></div>
                             <div></div>
                             <div></div>
@@ -109,7 +98,7 @@ function Home() {
                                         task={task}
                                         index={index}
                                         handleDeleteTask={handleDeleteTask}
-                                        saveLocalStorage={saveLocalStorage}
+                                        updateFirebase={updateFirebase}
                                     />
                                 </div>
                             ))}
@@ -136,7 +125,7 @@ function Home() {
                 </div>
             }
             <Footer />
-        </>
+        </div>
     )
 }
 

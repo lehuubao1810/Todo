@@ -27,7 +27,7 @@ function ModalTask(props) {
     const handleStatusTask = (e) => {
         setStatusTask(e.target.value)
         props.task.status = e.target.value
-        props.saveLocalStorage(props.tasks)
+        props.updateFirebase(props.tasks) 
     }
     const handleEdit = () => {
         setStatusMore(false)
@@ -68,7 +68,9 @@ function ModalTask(props) {
                         </div>
 
                     </div>
-                    <div className="description">{props.task.description}</div>
+                    <div className="description">
+                        <pre>{props.task.description}</pre>
+                    </div>
                     <h4>Current status</h4>
                     <select
                         className="status"
@@ -86,7 +88,7 @@ function ModalTask(props) {
                     tasks={props.tasks}
                     task={props.task}
                     handleOverlay={props.handleOverlay}
-                    saveLocalStorage={props.saveLocalStorage}
+                    updateFirebase={props.updateFirebase}
                 />
             }
             {
@@ -94,8 +96,8 @@ function ModalTask(props) {
                 <ModalDelete
                     task={props.task}
                     index={props.index}
-                    handleDeleteTask={props.handleDeleteTask}
                     handleOverlay={props.handleOverlay}
+                    handleDeleteTask={props.handleDeleteTask}
                 />
             }
         </>

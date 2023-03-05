@@ -11,7 +11,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'title':
       return { ...state, title: action.payload }
-    case 'description':
+    case 'description': 
+      // console.log(action.payload)
       return { ...state, description: action.payload }
     case 'status':
       return { ...state, status: action.payload }
